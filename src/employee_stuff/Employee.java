@@ -12,20 +12,16 @@ public class Employee implements IPayable {
 		this.bonus = DEFAULT_BONUS;
 	}
 
-	public Employee(int newNumber) {
+	public Employee(String newName) {
 		this();
-		this.number = newNumber;
+		this.name = newName;
 	}
 
-	public Employee(int newNumber, float newSalary) {
-		this(newNumber);
+	public Employee(String newName, float newSalary) {
+		this(newName);
 		this.setSalary(newSalary);
 	}
 
-	public Employee(int newNumber, float newSalary, String newName) {
-		this(newNumber, newSalary);
-		this.setName(newName);
-	}
 
 	public float calcPay() {
 		return getSalary() / 12;

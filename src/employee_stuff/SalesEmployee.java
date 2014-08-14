@@ -9,24 +9,6 @@ public class SalesEmployee extends Employee{
 		super();
 	}
 
-	public SalesEmployee(int newNumber) {
-		super(newNumber);
-	}
-
-	public SalesEmployee(int newNumber, float newSalary) {
-		super(newNumber, newSalary);
-	}
-
-	public SalesEmployee(int newNumber, float newSalary, String newName) {
-		super(newNumber, newSalary, newName);
-	}
-
-	public SalesEmployee(int newNumber, float newSalary, String newName,
-			float newCommissionRate) {
-		super(newNumber, newSalary, newName);
-		this.commissionRate = newCommissionRate;
-	}
-
 	public float getCommissionRate() {
 		return commissionRate;
 	}
