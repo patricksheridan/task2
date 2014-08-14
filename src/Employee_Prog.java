@@ -23,33 +23,35 @@ public class Employee_Prog {
 	{
 		JButton buttonA, buttonB, buttonC;
 		JScrollPane area;
+		JRadioButton employeeButton, sales_employeeButton;
 		
 			
 		JFrame Employee = new JFrame("Employee System");
 		FlowLayout layout = new FlowLayout();
 		
-		JPanel panelLeft = new JPanel();
-		JPanel panelRight = new JPanel();
+		JPanel panelTop = new JPanel();
+		JPanel panelBottom = new JPanel();
 		
-		panelLeft.setSize(800,300);
-		panelRight.setSize(800,300);
-		
-		panelRight.setLayout(new GridLayout(3,1));
+		panelTop.setSize(800,400);
+		panelBottom.setSize(800,400);
 		
 		
-		Employee.setSize(800,600);
+		panelBottom.setLayout(new GridLayout(2,3));
+		
+		
+		Employee.setSize(800,800);
 		Employee.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Employee.setLayout(layout);
 		
-		Employee.add(panelLeft);
-		Employee.add(panelRight);
+		Employee.add(panelTop);
+		Employee.add(panelBottom);
 		
 
 		Employee.setVisible(true);
 		
 		Dimension d = new Dimension(100,40);
 		
-		Dimension c = new Dimension(380,280);
+		Dimension c = new Dimension(800,400);
 		
 		area = new JScrollPane();
 		area.setSize(500, 500);
@@ -60,7 +62,7 @@ public class Employee_Prog {
 		area.setPreferredSize(c);
 		
 		buttonA = new JButton("Create");
-		buttonA.setSize(30,60);
+		//buttonA.setSize(30,60);
 		buttonA.setVisible(true);
 		buttonA.setSize(d);
 		buttonA.setMinimumSize(d);
@@ -69,7 +71,7 @@ public class Employee_Prog {
 		
 		
 		buttonB = new JButton("Update");
-		buttonB.setSize(30, 60);
+		//buttonB.setSize(30, 60);
 		buttonB.setVisible(true);
 		buttonB.setSize(d);
 		buttonB.setMinimumSize(d);
@@ -78,18 +80,31 @@ public class Employee_Prog {
 		
 		
 		buttonC = new JButton("Delete");
-		buttonC.setSize(30, 60);
+		//buttonC.setSize(30, 60);
 		buttonC.setVisible(true);
 		buttonC.setSize(d);
 		buttonC.setMinimumSize(d);
 		buttonC.setMaximumSize(d);
 		buttonC.setPreferredSize(d);
 		
+		employeeButton = new JRadioButton("Employee Database");
+		employeeButton.setSize(d);
+		employeeButton.setVisible(true);
 		
-		panelLeft.add(area);
-		panelRight.add(buttonA);
-		panelRight.add(buttonB);
-		panelRight.add(buttonC);
+		sales_employeeButton = new JRadioButton("Sales Employee Database");
+		sales_employeeButton.setSize(d);
+		sales_employeeButton.setVisible(true);
+		
+	
+		panelTop.add(area);
+		panelBottom.add(buttonA);
+		panelBottom.add(buttonB);
+		panelBottom.add(buttonC);
+		panelBottom.add(employeeButton);
+		panelBottom.add(sales_employeeButton);
+		
+		Employee.getContentPane().validate();
+        Employee.getContentPane().repaint();
 	}
 	
 	public static void promptPassword(){
@@ -103,6 +118,7 @@ public class Employee_Prog {
 		{
 			JOptionPane.showMessageDialog(null, "Login successful");
 			MainScreen();
+			
 			
 		}
 		
