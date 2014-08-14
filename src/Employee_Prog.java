@@ -1,5 +1,9 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Employee_Prog {
@@ -87,6 +91,7 @@ public class Employee_Prog {
 		buttonC.setMaximumSize(d);
 		buttonC.setPreferredSize(d);
 		
+		
 		employeeButton = new JRadioButton("Employee Database");
 		employeeButton.setSize(d);
 		employeeButton.setVisible(true);
@@ -95,14 +100,17 @@ public class Employee_Prog {
 		sales_employeeButton.setSize(d);
 		sales_employeeButton.setVisible(true);
 		
-	
+		ButtonGroup group = new ButtonGroup();
+		group.add(employeeButton);
+		group.add(sales_employeeButton);
+		
 		panelTop.add(area);
 		panelBottom.add(buttonA);
 		panelBottom.add(buttonB);
 		panelBottom.add(buttonC);
 		panelBottom.add(employeeButton);
 		panelBottom.add(sales_employeeButton);
-		
+	
 		Employee.getContentPane().validate();
         Employee.getContentPane().repaint();
 	}
