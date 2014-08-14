@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -19,6 +20,15 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 
 import employee_stuff.Employee;
+=======
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+>>>>>>> 113c16068f84e0f6ef39e8d858449c71e20630c8
 
 public class Employee_Prog {
 
@@ -107,6 +117,7 @@ public class Employee_Prog {
 		buttonC.setMaximumSize(d);
 		buttonC.setPreferredSize(d);
 		
+		
 		employeeButton = new JRadioButton("Employee Database");
 		employeeButton.setSize(d);
 		employeeButton.setVisible(true);
@@ -141,14 +152,17 @@ public class Employee_Prog {
 		sales_employeeButton.setSize(d);
 		sales_employeeButton.setVisible(true);
 		
-	
+		ButtonGroup group = new ButtonGroup();
+		group.add(employeeButton);
+		group.add(sales_employeeButton);
+		
 		panelTop.add(area);
 		panelBottom.add(buttonA);
 		panelBottom.add(buttonB);
 		panelBottom.add(buttonC);
 		panelBottom.add(employeeButton);
 		panelBottom.add(sales_employeeButton);
-		
+	
 		Employee.getContentPane().validate();
         Employee.getContentPane().repaint();
 	}
