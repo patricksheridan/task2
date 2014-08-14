@@ -1,6 +1,24 @@
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import javax.swing.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+
+import employee_stuff.Employee;
 
 public class Employee_Prog {
 
@@ -22,7 +40,8 @@ public class Employee_Prog {
 	public static void MainScreen()
 	{
 		JButton buttonA, buttonB, buttonC;
-		JScrollPane area;
+		final DefaultListModel model = new DefaultListModel();
+		final JList area;
 		JRadioButton employeeButton, sales_employeeButton;
 		
 			
@@ -53,7 +72,7 @@ public class Employee_Prog {
 		
 		Dimension c = new Dimension(800,400);
 		
-		area = new JScrollPane();
+		area = new JList(model);
 		area.setSize(500, 500);
 		area.setVisible(true);
 		area.setSize(c);
@@ -68,6 +87,7 @@ public class Employee_Prog {
 		buttonA.setMinimumSize(d);
 		buttonA.setMaximumSize(d);
 		buttonA.setPreferredSize(d);
+
 		
 		
 		buttonB = new JButton("Update");
@@ -90,6 +110,32 @@ public class Employee_Prog {
 		employeeButton = new JRadioButton("Employee Database");
 		employeeButton.setSize(d);
 		employeeButton.setVisible(true);
+
+		buttonA.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) 
+            { 
+        		try {
+        			Class driver = Class.forName("com.mysql.jdbc.Driver");
+        		} catch(ClassNotFoundException e1) {
+        			System.out.println(e1.getMessage());
+        		}
+        		try {
+        			Connection c = 
+        					DriverManager.getConnection("jdbc:mysql://localhost/task2", 
+        		            "root", "ch@ngeme1");
+        			Statement st = c.createStatement();
+        			ResultSet rs = st.executeQuery(
+        					"SELECT idEmployee, FName, SName, Salary FROM Employee");
+        			while(rs.next()) {
+        				String out = String.format("%s %s %s %s", rs.getString("idEmployee"), rs.getString("FName"), 
+        						rs.getString("SName"), rs.getString("Salary"));
+        				model.addElement(out);
+        			}
+        		} catch(SQLException e2) {
+        			System.out.println(e2.getMessage());
+        		}
+            } 
+          } );
 		
 		sales_employeeButton = new JRadioButton("Sales Employee Database");
 		sales_employeeButton.setSize(d);
