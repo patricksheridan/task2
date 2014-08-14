@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -17,18 +16,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
-
-import employee_stuff.Employee;
-=======
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
->>>>>>> 113c16068f84e0f6ef39e8d858449c71e20630c8
 
 public class Employee_Prog {
 
@@ -121,10 +109,12 @@ public class Employee_Prog {
 		employeeButton = new JRadioButton("Employee Database");
 		employeeButton.setSize(d);
 		employeeButton.setVisible(true);
-
-		buttonA.addActionListener(new ActionListener() { 
+		employeeButton.addActionListener(new ActionListener() { 
             public void actionPerformed(ActionEvent e) 
             { 
+            	model.clear();
+            	String headers = "ID\t\t\t Name\t Salary\t";
+            	model.addElement(headers);
         		try {
         			Class driver = Class.forName("com.mysql.jdbc.Driver");
         		} catch(ClassNotFoundException e1) {
@@ -138,7 +128,7 @@ public class Employee_Prog {
         			ResultSet rs = st.executeQuery(
         					"SELECT idEmployee, FName, SName, Salary FROM Employee");
         			while(rs.next()) {
-        				String out = String.format("%s %s %s %s", rs.getString("idEmployee"), rs.getString("FName"), 
+        				String out = String.format("%s\t %s %s %s\t", rs.getString("idEmployee"), rs.getString("FName"), 
         						rs.getString("SName"), rs.getString("Salary"));
         				model.addElement(out);
         			}
@@ -148,9 +138,40 @@ public class Employee_Prog {
             } 
           } );
 		
+		
 		sales_employeeButton = new JRadioButton("Sales Employee Database");
 		sales_employeeButton.setSize(d);
 		sales_employeeButton.setVisible(true);
+		sales_employeeButton.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) 
+            { 
+            	model.clear();
+            	String headers = "ID\t Name\t Salary\t CommissionRate\t SalesTotal\t";
+            	model.addElement(headers);
+        		try {
+        			Class driver = Class.forName("com.mysql.jdbc.Driver");
+        		} catch(ClassNotFoundException e1) {
+        			System.out.println(e1.getMessage());
+        		}
+        		try {
+        			Connection c = 
+        					DriverManager.getConnection("jdbc:mysql://localhost/task2", 
+        		            "root", "ch@ngeme1");
+        			Statement st = c.createStatement();
+        			ResultSet rs = st.executeQuery(
+        					"SELECT idSalesEmployee, FName, SName, Salary, CommissionRate, SalesTotal FROM SalesEmployee"
+        					+ " JOIN Employee ON idEmployee = idSalesEmployee");
+        			while(rs.next()) {
+        				String out = String.format("%s\t %s %s\t %s\t %s\t %s\t", rs.getString("idSalesEmployee"), rs.getString("FName"), 
+        						rs.getString("SName"), rs.getString("Salary"), rs.getString("CommissionRate"), 
+        						rs.getString("SalesTotal"));
+        				model.addElement(out);
+        			}
+        		} catch(SQLException e2) {
+        			System.out.println(e2.getMessage());
+        		}
+            } 
+          } );
 		
 		ButtonGroup group = new ButtonGroup();
 		group.add(employeeButton);
