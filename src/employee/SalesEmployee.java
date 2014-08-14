@@ -1,4 +1,4 @@
-package employee_stuff;
+package employee;
 
 public class SalesEmployee extends Employee{
 

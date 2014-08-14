@@ -1,9 +1,13 @@
-package employee_stuff;
+package employee;
 
-public class Employee implements IPayable {
+import employee_stuff.BadNumber;
+import employee_stuff.IPayable;
+
+public class Employee {
 	private int number;
 	private float salary;
-	private String name;
+	private String firstName;
+	private String lastName;
 	public float bonus;
 	private static final float DEFAULT_BONUS = 200f;
 	private static final float MIN_SALARY = 7000f;
@@ -12,13 +16,14 @@ public class Employee implements IPayable {
 		this.bonus = DEFAULT_BONUS;
 	}
 
-	public Employee(String newName) {
+	public Employee(String newFirstName, String newLastName) {
 		this();
-		this.name = newName;
+		this.firstName = newFirstName;
+		this.lastName = newLastName;
 	}
 
-	public Employee(String newName, float newSalary) {
-		this(newName);
+	public Employee(String newFirstName, String newLastName, float newSalary) {
+		this(newFirstName, newLastName);
 		this.setSalary(newSalary);
 	}
 
@@ -28,8 +33,8 @@ public class Employee implements IPayable {
 	}
 
 	public String toString() {
-		return String.format("Employee %d: %s, £%.2f, £%.2f per month.",
-				this.number, this.getName(), this.getSalary(), this.calcPay());
+		return String.format("Employee %d: %s %s, £%.2f, £%.2f per month.",
+				this.number, this.getFirstName(), this.getLastName(), this.getSalary(), this.calcPay());
 	}
 
 	public int getNumber() {
@@ -67,12 +72,28 @@ public class Employee implements IPayable {
 		}
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String newName) {
-		this.name = newName;
+	public void setFirstName(String newFirstName) {
+		this.firstName = newFirstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String newLastName) {
+		this.lastName = newLastName;
+	}
+	
+	public float getBonus() {
+		return bonus;
+	}
+
+	public void setBonus(float newBonus) {
+		this.bonus = newBonus;
 	}
 
 }
