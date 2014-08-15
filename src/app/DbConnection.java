@@ -13,8 +13,8 @@ public class DbConnection {
 			Class driver = Class.forName("com.mysql.jdbc.Driver");
 			
 			Connection c = 
-					DriverManager.getConnection("jdbc:mysql://localhost/test", 
-		            "root", "password1");
+					DriverManager.getConnection("jdbc:mysql://localhost/task2", 
+		            "root", "ch@ngeme1");
 			
 			return c;
 		} catch(ClassNotFoundException e1) {
